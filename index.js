@@ -26,21 +26,12 @@ class Client {
 		}
 
 		var result = {
-			q: query.replace(/\s/g, '+'),
-			searchType: 'image',
-			cx: this.id,
-			key: this.apiKey
+      cx: this.id,
+      key: this.apiKey,
+			q: query.replace(/\s/g, '+')
 		};
-
-		if (options.page) {
-			result.start = options.page;
-		}
-
-		if (options.size) {
-			result.imgSize = options.size;
-		}
-
-		return qs.stringify(result);
+		
+		return qs.stringify(Object.assign(result, options));
 	}
 
 	_buildResponse(res) {
